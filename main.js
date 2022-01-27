@@ -1,13 +1,11 @@
 require('./config.js')
 const { WAConnection: _WAConnection } = require('@adiwajshing/baileys')
-const cloudDBAdapter = require('./lib/cloudDBAdapter')
 const { generate } = require('qrcode-terminal')
 const syntaxerror = require('syntax-error')
 const simple = require('./lib/simple')
 const { promisify } = require('util')
 const yargs = require('yargs/yargs')
 const Readline = require('readline')
-const cp = require('child_process')
 const _ = require('lodash')
 const path = require('path')
 const fs = require('fs')
@@ -18,7 +16,6 @@ try {
   low = require('./lib/lowdb')
 }
 const { Low, JSONFile } = low
-const mongoDB = require('./lib/mongoDB')
 
 const rl = Readline.createInterface(process.stdin, process.stdout)
 const WAConnection = simple.WAConnection(_WAConnection)
@@ -33,7 +30,6 @@ global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse()
 
 global.prefix = new RegExp('^[' + (opts['prefix'] || '\.!#/$,').replace(/[|\\{}()[\]^$+*?\-\^]/g, '\\$') + ']')
 
-// global.db = new Low(new mongoDB('mongodb+srv://ariffb:stikerin@json-server.thhce.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'))
 global.db = new Low(new JSONFile(`database.json`))
 global.DATABASE = global.db // Backwards Compatibility
 
