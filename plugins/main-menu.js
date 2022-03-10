@@ -23,16 +23,15 @@ const defaultMenu = {
 │
 │ Uptime: *%uptime (%muptime)*
 │ Database: %rtotalreg of %totalreg
-│ Github:
-│ %github
+│ 
+│ 
 └────
 %readmore`.trimStart(),
     header: '┌「 *%category* 」',
     body: '├ %cmd',
     footer: '└────\n',
     after: `
-*%npmname@^%version*
-_%npmdesc_
+NdaaBotz
 `,
 }
 
